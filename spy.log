@@ -1,0 +1,4 @@
+1580051179289|4|statement|connection 0|url jdbc:p6spy:tc:postgresql:12.1://pulsar|select * from information_schema.sequences|select * from information_schema.sequences
+1580051179769|1|statement|connection 0|url jdbc:p6spy:tc:postgresql:12.1://pulsar|select * from information_schema.sequences|select * from information_schema.sequences
+1580051179783|2|statement|connection 0|url jdbc:p6spy:tc:postgresql:12.1://pulsar|create table public.home_entity (id int8 not null, name varchar(255), primary key (id))|create table public.home_entity (id int8 not null, name varchar(255), primary key (id))
+1580051179794|1|statement|connection 0|url jdbc:p6spy:tc:postgresql:12.1://pulsar|create sequence hibernate_sequence start 1 increment 1|create sequence hibernate_sequence start 1 increment 1
