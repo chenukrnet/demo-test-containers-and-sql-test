@@ -14,18 +14,19 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ActiveProfiles("prod")
 @SpringBootTest
 @SpringJUnitConfig(initializers = TestContextInitialise.class)
 public class PostgressTest {
 
     @Autowired
-    HomeRepository homeRepository;
+    private HomeRepository homeRepository;
 
 
     /**
      * До java 8 нельзя было использовать повторяемые анотации,  @SqlGroup - позволяла выполнять набор
-     * */
+     */
     @SqlGroup(value = {
             @Sql(statements = "insert into home_entity (id, name) values (1, 'Васька');"),
             @Sql(value = "classpath:delete-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD,
@@ -38,7 +39,7 @@ public class PostgressTest {
         assertTrue(byId.isPresent());
         if (byId.isPresent()) {
             assertEquals("Васька", byId.get().getName());
-        }else {
+        } else {
             fail();
         }
     }
