@@ -66,15 +66,6 @@ class SqlConfigTest {
         assertTrue(byDisjoint.isEmpty());
     }
 
-    @Sql(value = "classpath:insert-test-data.sql")
-    @Sql(value = "classpath:delete-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD,
-            config = @SqlConfig(separator = ";", commentPrefix = "//")
-    )
-    @Test
-    public void disJointFoundIfFirstEqualAndSecondNot() {
-        Optional<HomeEntity> byDisjoint = homeRepository.findByDisjointFailed(1L, "Васька-2");
-        assertTrue(byDisjoint.isEmpty());
-    }
 
 
 

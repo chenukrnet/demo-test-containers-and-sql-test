@@ -1,4 +1,4 @@
-package com.example.demosqltest.jpa.transaction.commit;
+package com.example.demosqltest.jpa.additional.transaction.commit;
 
 import com.example.demosqltest.jpa.entity.HomeEntity;
 import com.example.demosqltest.jpa.repositories.HomeRepository;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,13 +19,12 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
 @ActiveProfiles("test-containers")
-@Transactional// показать как ведет себя приложения если выключить
-@Commit  //@Rollback(false)
 @SpringBootTest
 @Slf4j
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class CommitTest {
+class RollBackTest {
 
     @Autowired
     HomeRepository homeRepository;
@@ -36,6 +35,8 @@ class CommitTest {
     // TODO: 01.02.2020 fix it
     @Order(1)
     @Test
+    @Transactional// Обязательное указание
+    @Rollback(true)
     public void successSaving() {
         HomeEntity entity = new HomeEntity();
         entity.setId(1L);

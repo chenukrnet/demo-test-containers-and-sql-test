@@ -29,8 +29,8 @@ public class TestContextInitialise implements ApplicationContextInitializer<Conf
             .withVhost(V_HOST, true)
             .withUser(USER, PASSWORD)
             .withPermission(V_HOST, USER, ".*", ".*", ".*");
-//            .withExchange(MY_EXCHANGE, "direct", false, true, true, Map.of("vhost", V_HOST))
 //            .withQueue(MY_QUEUE)
+//            .withExchange(MY_EXCHANGE, "direct", false, true, true, Map.of("vhost", V_HOST))
 //            .withBinding(MY_EXCHANGE, MY_QUEUE);
 
 

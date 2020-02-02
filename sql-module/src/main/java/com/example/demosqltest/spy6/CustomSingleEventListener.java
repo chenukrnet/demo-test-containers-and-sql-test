@@ -1,12 +1,10 @@
 package com.example.demosqltest.spy6;
 
-import com.p6spy.engine.common.CallableStatementInformation;
 import com.p6spy.engine.common.PreparedStatementInformation;
 import com.p6spy.engine.common.StatementInformation;
 import com.p6spy.engine.event.JdbcEventListener;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

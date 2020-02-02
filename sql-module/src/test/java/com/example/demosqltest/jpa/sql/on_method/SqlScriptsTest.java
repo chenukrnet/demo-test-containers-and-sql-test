@@ -3,6 +3,7 @@ package com.example.demosqltest.jpa.sql.on_method;
 import com.example.demosqltest.jpa.entity.HomeEntity;
 import com.example.demosqltest.jpa.repositories.HomeRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,6 +53,7 @@ class SqlScriptsTest {
         assertTrue(byDisjoint.isEmpty());
     }
 
+    @Disabled("Рассказать почему")
     @Sql(value = "classpath:insert-test-data.sql")
     @Sql(value = "classpath:delete-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD,
             config = @SqlConfig(separator = ";", commentPrefix = "//")
@@ -59,6 +62,17 @@ class SqlScriptsTest {
     public void disJointFoundIfFirstEqualAndSecondNot() {
         Optional<HomeEntity> byDisjoint = homeRepository.findByDisjointFailed(1L, "Васька-2");
         assertTrue(byDisjoint.isEmpty());
+    }
+
+
+  @Sql(value = "classpath:insert-test-data.sql")
+    @Sql(value = "classpath:delete-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD,
+            config = @SqlConfig(separator = ";", commentPrefix = "//")
+    )
+    @Test
+    public void disJointFoundIfFirstEqualAndSecondNotCorrect() {
+        Collection<HomeEntity> byDisjoint = homeRepository.findByDisjoint(1L, "Васька-2");
+        assertEquals(2, byDisjoint.size());
     }
 
 
