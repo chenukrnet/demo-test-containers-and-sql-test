@@ -4,10 +4,7 @@ import com.example.demosqltest.jpa.entity.HomeEntity;
 import com.example.demosqltest.jpa.repositories.HomeRepository;
 import com.example.demosqltest.spy6.CustomSingleEventListener;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -19,6 +16,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
 
 @ActiveProfiles("test-containers")
 @SpringBootTest
@@ -44,6 +42,7 @@ class RollBackTest {
         homeRepository.saveAndFlush(entity);
     }
 
+    @Disabled("Рассказать почему")
     @Order(2)
     @Test
     public void getDataSavingInOtherTest() {
